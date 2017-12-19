@@ -1,0 +1,54 @@
+{% load i18n utils %}
+
+{% set page_obj.paginator as paginator %}
+{% set paginator.page_param as page_param %}
+
+{% if paginator.num_pages > 1 %}
+  {% get_params_url exclude=page_param as params_url %}
+
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li>
+        <a href="?{{ page_param }}={{ page_obj.previous_page_number }}{% if params_url %}&{{ params_url }}{% endif %}">
+          {% trans 'Previous' %}
+        </a>
+      </li>
+    {% endif %}
+
+    {% if page_obj.number|subtract:paginator.side_pages_total >= 2 %}
+      <li>
+        <a href="?{{ page_param }}=1{% if params_url %}&{{ params_url }}{% endif %}">1</a>
+      </li>
+      {% if page_obj.number|subtract:paginator.side_pages_total > 2 %}
+        <li><span>...</span></li>
+      {% endif %}
+    {% endif %}
+
+    {% for num in paginator.page_range %}
+      {% if num == page_obj.number %}
+        <li class="active"><a href="#">{{ num }}</a></li>
+      {% elif num >= page_obj.number|subtract:paginator.side_pages_total and num <= page_obj.number|add:paginator.side_pages_total %}
+        <li>
+          <a href="?{{ page_param }}={{ num }}{% if params_url %}&{{ params_url }}{% endif %}">{{ num }}</a>
+        </li>
+      {% endif %}
+    {% endfor %}
+
+    {% if page_obj.paginator.num_pages|subtract:'1' >= page_obj.number|add:paginator.side_pages_total %}
+      {% if page_obj.paginator.num_pages|subtract:'1' > page_obj.number|add:paginator.side_pages_total %}
+        <li><span>...</span></li>
+      {% endif %}
+      <li>
+        <a href="?{{ page_param }}={{ paginator.num_pages }}{% if params_url %}&{{ params_url }}{% endif %}">{{ paginator.num_pages }}</a>
+      </li>
+    {% endif %}
+
+    {% if page_obj.has_next %}
+      <li>
+        <a href="?{{ page_param }}={{ page_obj.next_page_number }}{% if params_url %}&{{ params_url }}{% endif %}">
+          {% trans 'Next' %}
+        </a>
+      </li>
+    {% endif %}
+  </ul>
+{% endif %}

@@ -1,0 +1,17 @@
+{
+  "setupTestFrameworkScriptFile": "./jest/setup",
+  "verbose": true,
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+    "**/*.{js}",
+    "!**/node_modules/**",
+    "!.build/**",
+    "!**webpack*.js",
+    "!**server.js",
+    "!.eslintrc.js",
+    "!reducers/index.js",
+    "!stores/index.js"
+  ],
+  "rootDir": "../",
+  "coverageDirectory": "./jest/.coverage"
+}
