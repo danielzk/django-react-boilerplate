@@ -21,33 +21,33 @@ Installing
 2. Create an .env file and set variables. Examples can be found in `.env.example`.
 3. Install Node dependencies:
 
-    .. code-block:: bash
+   .. code-block:: bash
 
-       frontend$ npm install
+      frontend$ npm install
 
 4. Start Node script for build and watch files:
 
-    .. code-block:: bash
+   .. code-block:: bash
 
-       frontend$ npm start
+      frontend$ npm start
 
 5. Install Python dependencies:
 
-    .. code-block:: bash
+   .. code-block:: bash
 
-       backend$ pip install -r requirements.txt
+      backend$ pip install -r requirements.txt
 
 6. Run migrations:
 
-    .. code-block:: bash
+   .. code-block:: bash
 
-       backend$ python manage.py migrate
+      backend$ python manage.py migrate
 
 7. Start the server:
 
-    .. code-block:: bash
+   .. code-block:: bash
 
-       backend$ python manage.py runserver
+      backend$ python manage.py runserver
 
 The site will be available on <http://127.0.0.1:8000>.
 
