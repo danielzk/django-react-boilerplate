@@ -18,7 +18,8 @@ Installing
 ----------
 
 1. Create the database and the virtual environment.
-2. Create an .env file and set variables. Examples can be found in `.env.example`.
+2. Create an .env file and set variables. Examples can be found in
+   :code:`.env.example`.
 3. Install Node dependencies:
 
    .. code-block:: bash
@@ -53,9 +54,9 @@ The site will be available on <http://127.0.0.1:8000>.
 
 **Note**
 
-Add the `backend/apps` directory to the PYTHONPATH so your editor/IDE
+Add the :code:`backend/apps` directory to the PYTHONPATH so your editor/IDE
 recognizes it. This is not required to run the site since this is done in
-`backend/project/settings/base.py`.
+:code:`backend/project/settings/base.py`.
 
 Deploy
 ======
