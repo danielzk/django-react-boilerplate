@@ -51,6 +51,12 @@ Installing
 
 The site will be available on <http://127.0.0.1:8000>.
 
+**Note**
+
+Add the `backend/apps` directory to the PYTHONPATH so your editor/IDE
+recognizes it. This is not required to run the site since this is done in
+`backend/project/settings/base.py`.
+
 Deploy
 ======
 
