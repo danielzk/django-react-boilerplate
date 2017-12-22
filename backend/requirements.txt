@@ -1,13 +1,14 @@
 beautifulsoup4
 boto
 celery
-Django
+Django==1.11
 django-cors-headers
 django-debug-toolbar
 django-environ
 django-filter
 django-hijack
 django-htmlmin
+django-polymorphic
 djangorestframework
 django-storages
 django-webpack-loader
