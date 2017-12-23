@@ -28,15 +28,19 @@ discouraged in most cases in favor of codename approach.
 
 **Using codename field**
 
-title   | codename | country__codename | categories__codenames | foreign_field | m2m_field
-Value 1 | ART1     | US                | GAMES,BOOKS           | 2             | 5,7
-Value 2 | ART2     | US                |                       | 5             | 3, 5
-Value 3 | ART3     | MX                | BOOKS, MUSIC          |               | 9
+.. code-block:: none
+
+   title   | codename | country__codename | categories__codenames | foreign_field | m2m_field
+   Value 1 | ART1     | US                | GAMES,BOOKS           | 2             | 5,7
+   Value 2 | ART2     | US                |                       | 5             | 3, 5
+   Value 3 | ART3     | MX                | BOOKS, MUSIC          |               | 9
 
 **Using pk field**
 
-my_pk_field | name
-mypk        | Value 1
+.. code-block:: none
+
+   my_pk_field | name
+   mypk        | Value 1
 
 Records are updated based on the codename or pk fields. M2M fields are
 completely updated, that is, data is added and removed. For example, if we
