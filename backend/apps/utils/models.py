@@ -1,7 +1,7 @@
 import uuid
 
 from django.db import models
-from django.db.models import DateTimeField, UUIDField
+from django.db.models import CharField, DateTimeField
 from django.utils.timezone import now
 from django.utils.translation import ugettext_lazy as _
 
@@ -22,8 +22,8 @@ class TimeStampedSaveModelMixin(object):
 
 
 class UUIDModel(models.Model):
-    codename = UUIDField(default=uuid.uuid4, editable=False)
-    
+    codename = CharField(max_length=36, default=uuid.uuid4, unique=True)
+
     class Meta:
         abstract = True
 
@@ -51,8 +51,8 @@ class TimeStampedPolymorphicModel(TimeStampedSaveModelMixin,
 
 
 class UUIDPolymorphicModel(polymorphic_models.PolymorphicModel):
-    codename = UUIDField(default=uuid.uuid4, editable=False)
-    
+    codename = CharField(max_length=36, default=uuid.uuid4, unique=True)
+
     class Meta:
         abstract = True
 
