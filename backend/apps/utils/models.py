@@ -1,5 +1,7 @@
+import uuid
+
 from django.db import models
-from django.db.models import DateTimeField
+from django.db.models import DateTimeField, UUIDField
 from django.utils.timezone import now
 from django.utils.translation import ugettext_lazy as _
 
@@ -19,6 +21,13 @@ class TimeStampedSaveModelMixin(object):
         super().save(*args, **kwargs)
 
 
+class UUIDModel(models.Model):
+    codename = UUIDField(default=uuid.uuid4, editable=False)
+    
+    class Meta:
+        abstract = True
+
+
 class TimeStampedModel(TimeStampedSaveModelMixin, models.Model):
     created_at = DateTimeField(_('Created at'), auto_now_add=True)
     updated_at = DateTimeField(_('Updated at'), null=True, editable=False)
@@ -27,7 +36,7 @@ class TimeStampedModel(TimeStampedSaveModelMixin, models.Model):
         abstract = True
 
 
-class BaseModel(ValidationModelMixin, TimeStampedModel):
+class BaseModel(ValidationModelMixin, UUIDModel, TimeStampedModel):
     class Meta:
         abstract = True
 
@@ -41,6 +50,15 @@ class TimeStampedPolymorphicModel(TimeStampedSaveModelMixin,
         abstract = True
 
 
-class BasePolymorphicModel(ValidationModelMixin, TimeStampedPolymorphicModel):
+class UUIDPolymorphicModel(polymorphic_models.PolymorphicModel):
+    codename = UUIDField(default=uuid.uuid4, editable=False)
+    
+    class Meta:
+        abstract = True
+
+
+class BasePolymorphicModel(ValidationModelMixin,
+                           UUIDPolymorphicModel,
+                           TimeStampedPolymorphicModel):
     class Meta:
         abstract = True
