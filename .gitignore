@@ -111,3 +111,4 @@ frontend/webpack-stats.json
 frontend/.build/
 frontend/jest/.coverage
 .tmp/
+*.csv#
