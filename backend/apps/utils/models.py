@@ -21,7 +21,7 @@ class TimeStampedSaveModelMixin(object):
         super().save(*args, **kwargs)
 
 
-class UUIDModel(models.Model):
+class CodenameModel(models.Model):
     codename = CharField(max_length=36, default=uuid.uuid4, unique=True)
 
     class Meta:
@@ -36,7 +36,14 @@ class TimeStampedModel(TimeStampedSaveModelMixin, models.Model):
         abstract = True
 
 
-class BaseModel(ValidationModelMixin, UUIDModel, TimeStampedModel):
+class BaseModel(ValidationModelMixin, CodenameModel, TimeStampedModel):
+    class Meta:
+        abstract = True
+
+
+class CodenamePolymorphicModel(polymorphic_models.PolymorphicModel):
+    codename = CharField(max_length=36, default=uuid.uuid4, unique=True)
+
     class Meta:
         abstract = True
 
@@ -50,15 +57,8 @@ class TimeStampedPolymorphicModel(TimeStampedSaveModelMixin,
         abstract = True
 
 
-class UUIDPolymorphicModel(polymorphic_models.PolymorphicModel):
-    codename = CharField(max_length=36, default=uuid.uuid4, unique=True)
-
-    class Meta:
-        abstract = True
-
-
 class BasePolymorphicModel(ValidationModelMixin,
-                           UUIDPolymorphicModel,
+                           CodenamePolymorphicModel,
                            TimeStampedPolymorphicModel):
     class Meta:
         abstract = True
