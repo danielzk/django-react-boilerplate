@@ -25,6 +25,7 @@ INTERNAL_IPS = (
     '127.0.0.1',
     '0.0.0.0',
 )
+SITE_ID = 1
 
 PROJECT_ALIAS = 'project'
 PROJECT_DISPLAY_NAME = 'Project'
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
     'webpack_loader',
     'corsheaders',
     'widget_tweaks',
+    'parler',
     'rest_framework',
 
     'users',
@@ -147,6 +149,13 @@ LANGUAGES = [
 
 LOCALE_PATHS = [root('locale')]
 
+PARLER_LANGUAGES = {
+    SITE_ID: (
+        {'code': 'en',},
+        {'code': 'es',},
+    ),
+}
+
 
 # =============================================================================
 # Static and media
@@ -247,7 +256,6 @@ REST_FRAMEWORK = {
 
 ROOT_URLCONF = 'project.urls'
 WSGI_APPLICATION = 'project.wsgi.application'
-SITE_ID = 1
 
 ADMINS = []
 admins = env('ADMINS')

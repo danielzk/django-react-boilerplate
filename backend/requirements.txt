@@ -8,6 +8,7 @@ django-environ
 django-filter
 django-hijack
 django-htmlmin
+django-parler
 django-polymorphic
 djangorestframework
 django-storages
