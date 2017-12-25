@@ -46,6 +46,19 @@ Records are updated based on the codename or pk fields. M2M fields are
 completely updated, that is, data is added and removed. For example, if we
 remove BOOKS from categories__codenames, it will be removed from the object.
 
+Parler
+""""""
+
+Parler translation models must have "language_code" and "master__codename" or
+"master" fields. Name of translation models end with "Translation".
+
+world.countrytranslation.csv
+
+.. code-block:: none
+
+   language_code | master__codename | name
+   es            | USA              | Estados Unidos
+
 Other formats
 -------------
 

@@ -30,21 +30,39 @@ class Command(BaseCommand):
 
             reader = csv.DictReader(file, delimiter=',')
             for row in reader:
-                obj = Model()
-                if Model._meta.pk.name in reader.fieldnames:
+                qs = None
+
+                # Filter by translation
+                if model.lower().endswith('translation'):
+                    language_code = row['language_code']
+
+                    master_codename = row.get('master__codename', None)
+                    master_pk = row.get('master', None)
+                    if not master_codename and not master_pk:
+                        raise CommandError('master__codename or master is required')
+
+                    qs = Model.objects.filter(language_code=language_code)
+                    if master_codename:
+                        qs = qs.filter(master__codename=master_codename)
+                    else:
+                        qs = qs.filter(master__pk=master_pk)
+                # Filter by pk
+                elif Model._meta.pk.name in reader.fieldnames:
                     qs = Model.objects.get(pk=row[Model._meta.pk.name])
-                    if qs.exists():
-                        obj = qs.first()
+                # Filter by codename
                 elif 'codename' in reader.fieldnames:
                     qs = Model.objects.filter(codename=row['codename'])
-                    if qs.exists():
-                        obj = qs.first()
+
+                obj = Model()
+                if qs is not None and qs.exists():
+                    obj = qs.first()
 
                 m2m_data = {}
 
                 for fieldname in reader.fieldnames:
                     value = row[fieldname]
 
+                    # FK codename
                     if fieldname.endswith('__codename'):
                         fieldname = fieldname.replace('__codename', '_id')
                         if not value:
@@ -53,16 +71,19 @@ class Command(BaseCommand):
                             RelModel = obj._meta.get_field(fieldname).rel.to
                             rel_obj = RelModel.objects.get(codename=value.strip())
                             value = rel_obj.pk
+                    # FK
                     elif type(obj._meta.get_field(fieldname)) == ForeignKey:
                         if not value:
                             value = None
                         else:
                             RelModel = obj._meta.get_field(fieldname).rel.to
                             value = RelModel.objects.get(pk=value.strip())
+                    # M2M
                     elif (fieldname.endswith('__codenames') or
                             type(obj._meta.get_field(fieldname)) == ManyToManyField):
                         m2m_data[fieldname] = value
                         continue
+                    # Empty and nullable
                     elif not value and obj._meta.get_field(fieldname).null:
                         value = None
 
