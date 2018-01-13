@@ -5,8 +5,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const BundleTracker = require('webpack-bundle-tracker')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 
-const inProduction = (process.env.NODE_ENV === 'production')
-const buildPath = path.resolve(__dirname, './.build/')
+const inProduction = 'production' === process.env.NODE_ENV
+const buildPath = path.resolve(__dirname, '.build/')
 
 module.exports = {
   entry: {
@@ -26,7 +26,7 @@ module.exports = {
 
   plugins: [
     new CleanWebpackPlugin(['.build']),
-    new webpack.optimize.CommonsChunkPlugin({name: 'react'}),
+    new webpack.optimize.CommonsChunkPlugin({name: 'vendor'}),
     new BundleTracker({filename: './webpack-stats.json'}),
     new ExtractTextPlugin({
       filename: `css/[name]-[hash].css`,
