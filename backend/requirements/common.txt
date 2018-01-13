@@ -15,11 +15,6 @@ django-storages
 django-webpack-loader
 django-widget-tweaks
 drf-extensions
-factory_boy
-isort
 pillow
 psycopg2
-pytest-cov
-pytest-django
-snapshottest
 whitenoise

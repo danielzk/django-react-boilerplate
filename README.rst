@@ -36,7 +36,7 @@ Installing
 
    .. code-block:: bash
 
-      backend$ pip install -r requirements.txt
+      backend$ pip install -r requirements/dev.txt
 
 6. Run migrations:
 

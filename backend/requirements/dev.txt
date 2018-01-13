@@ -1,0 +1,6 @@
+-r base.txt
+factory_boy
+isort
+pytest-cov
+pytest-django
+snapshottest
