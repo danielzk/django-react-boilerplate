@@ -25,19 +25,19 @@ class SetVarNode(template.Node):
         return ''
 
 
+# pylint: disable=unused-argument
 @register.tag(name='set')
 def set_var(parser, token):
     try:
-        # Splitting by None == splitting by spaces.
-        tag_name, arg = token.contents.split(None, 1)
-    except ValueError:
+        arg = token.contents.split(" ", 1)[1]
+    except IndexError:
         raise template.TemplateSyntaxError('"set" tag requires arguments')
 
-    m = re.search(r'(.*?) as (\w+)', arg)
-    if not m:
+    match = re.search(r'(.*?) as (\w+)', arg)
+    if not match:
         raise template.TemplateSyntaxError('"set" tag has invalid arguments')
 
-    var_value, var_name = m.groups()
+    var_value, var_name = match.groups()
     return SetVarNode(var_name, var_value)
 
 

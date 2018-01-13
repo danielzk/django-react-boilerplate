@@ -7,6 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class AtLeastOneDigitPasswordValidator(object):
+    # pylint: disable=unused-argument
     def validate(self, password, user=None):
         if not any(char.isdigit() for char in password):
             raise ValidationError(
@@ -19,6 +20,7 @@ class AtLeastOneDigitPasswordValidator(object):
 
 
 class AtLeastOneLetterPasswordValidator(object):
+    # pylint: disable=unused-argument
     def validate(self, password, user=None):
         if not any(char.isalpha() for char in password):
             raise ValidationError(

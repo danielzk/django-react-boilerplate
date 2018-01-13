@@ -13,6 +13,7 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('csv_path')
 
+    # pylint: disable=too-many-locals,too-many-branches,too-many-statements
     @transaction.atomic
     def handle(self, *args, **options):
         csv_path = options['csv_path']
@@ -24,6 +25,7 @@ class Command(BaseCommand):
             new_objs_count = updated_objs_count = 0
 
             try:
+                # pylint: disable=invalid-name
                 Model = apps.get_model(app, model)
             except LookupError:
                 raise CommandError('Model {} does not exist'.format(model))
@@ -68,19 +70,19 @@ class Command(BaseCommand):
                         if not value:
                             value = None
                         else:
-                            RelModel = obj._meta.get_field(fieldname).rel.to
+                            RelModel = obj._meta.get_field(fieldname).rel.to  # pylint: disable=invalid-name
                             rel_obj = RelModel.objects.get(codename=value.strip())
                             value = rel_obj.pk
                     # FK
-                    elif type(obj._meta.get_field(fieldname)) == ForeignKey:
+                    elif isinstance(obj._meta.get_field(fieldname), ForeignKey):
                         if not value:
                             value = None
                         else:
-                            RelModel = obj._meta.get_field(fieldname).rel.to
+                            RelModel = obj._meta.get_field(fieldname).rel.to  # pylint: disable=invalid-name
                             value = RelModel.objects.get(pk=value.strip())
                     # M2M
                     elif (fieldname.endswith('__codenames') or
-                            type(obj._meta.get_field(fieldname)) == ManyToManyField):
+                          isinstance(obj._meta.get_field(fieldname), ManyToManyField)):
                         m2m_data[fieldname] = value
                         continue
                     # Empty and nullable
@@ -106,6 +108,7 @@ class Command(BaseCommand):
                             fieldname = fieldname.replace('__codenames', '')
                             pks = []
                             for codename in values:
+                                # pylint: disable=invalid-name
                                 RelModel = obj._meta.get_field(fieldname).rel.to
                                 pk = RelModel.objects.get(codename=codename).pk
                                 pks.append(pk)

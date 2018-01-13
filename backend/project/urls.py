@@ -32,6 +32,7 @@ if settings.DEBUG:
 
 admin.site.site_header = settings.PROJECT_DISPLAY_NAME
 
+# pylint: disable=invalid-name
 handler400 = 'main.views.bad_request'
 handler403 = 'main.views.permission_denied'
 handler404 = 'main.views.page_not_found'

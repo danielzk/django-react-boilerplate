@@ -4,6 +4,8 @@ from rest_framework_extensions.etag.mixins import ListETAGMixin
 
 
 class UpdatedAtListETAGMixin(ListETAGMixin):
+
+    # pylint: disable=unused-argument
     def list_etag_func(self, *args, **kwargs):
         qs = self.get_queryset()
         count = qs.count()
