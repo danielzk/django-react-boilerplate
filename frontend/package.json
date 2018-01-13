@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/.bin/webpack --watch",
-    "build": "NODE_ENV=production ./node_modules/.bin/webpack -p",
-    "build_dev": "./node_modules/.bin/webpack",
-    "test": "./node_modules/.bin/jest --config jest/jest-config-test.json",
-    "tests": "./node_modules/.bin/eslint . && ./node_modules/.bin/jest --config jest/jest-config-tests.json",
+    "start": "webpack --watch",
+    "build": "NODE_ENV=production webpack -p",
+    "build-dev": "webpack",
+    "test": "jest --config jest/jest-config-test.json",
+    "tests": "eslint . && jest --config jest/jest-config-tests.json",
+    "eslint": "eslint .",
     "makemessages": "./node_modules/.bin/i18next -r --directoryFilter !.build,!node_modules,!assets,!jest -o i18next/ -l es"
   },
   "dependencies": {
