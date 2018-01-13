@@ -8,7 +8,7 @@ export default i18next
   .use(LanguageDetector)
   .use(reactI18nextModule)
   .init({
-    debug: process.env.NODE_ENV !== 'production',
+    debug: 'production' !== process.env.NODE_ENV,
     resources: {
       es: {translation: es}
     }
