@@ -1,4 +1,4 @@
--r base.txt
+-r common.txt
 factory_boy
 isort
 pytest-cov
