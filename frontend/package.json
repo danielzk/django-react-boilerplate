@@ -10,7 +10,8 @@
     "test": "jest --config jest/jest-config-test.json",
     "tests": "eslint . && jest --config jest/jest-config-tests.json",
     "eslint": "eslint .",
-    "makemessages": "./node_modules/.bin/i18next -r --directoryFilter !.build,!node_modules,!assets,!jest -o i18next/ -l es"
+    "stylelint": "stylelint assets/sass/*.scss",
+    "makemessages": "i18next -r --directoryFilter !.build,!node_modules,!assets,!jest -o i18next/ -l es"
   },
   "dependencies": {
     "babel-core": "^6.26.0",
@@ -46,6 +47,8 @@
     "rosie": "^1.6.0",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.1",
+    "stylelint": "^8.4.0",
+    "stylelint-config-standard": "^18.0.0",
     "webpack": "^3.10.0",
     "webpack-bundle-tracker": "^0.2.0"
   }
