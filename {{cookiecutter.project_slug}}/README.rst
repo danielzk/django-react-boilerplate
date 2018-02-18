@@ -71,20 +71,17 @@ Django
 
 .. code-block:: bash
 
-   backend$ pytest
+  backend$ make tests
+  backend$ make wip-tests
+  backend$ make review-tests
 
 JS
 --
 
 .. code-block:: bash
 
-   frontend$ npm test
-
-or review tests
-
-.. code-block:: bash
-
-   frontend$ npm run tests
+  frontend$ npm test
+  frontend$ npm run review-tests
 
 Authors
 =======
