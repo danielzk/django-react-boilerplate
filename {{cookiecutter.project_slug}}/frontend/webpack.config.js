@@ -19,6 +19,8 @@ module.exports = {
     ],
   },
 
+  devtool: inProduction ? 'source-map' : 'eval-source-map',
+
   output: {
     path: buildPath,
     filename: './bundles/[name]-[hash].js',
@@ -73,10 +75,4 @@ module.exports = {
       },
     ],
   },
-}
-
-if (inProduction) {
-  module.exports.plugins.push(
-    new webpack.optimize.UglifyJsPlugin()
-  )
 }
