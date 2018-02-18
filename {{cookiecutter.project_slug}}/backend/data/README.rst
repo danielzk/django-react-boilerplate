@@ -28,7 +28,7 @@ discouraged in most cases in favor of codename approach.
 
 **Using codename field**
 
-.. code-block:: none
+.. code-block::
 
    title   | codename | country__codename | categories__codenames | foreign_field | m2m_field
    Value 1 | ART1     | US                | GAMES,BOOKS           | 2             | 5,7
@@ -37,7 +37,7 @@ discouraged in most cases in favor of codename approach.
 
 **Using pk field**
 
-.. code-block:: none
+.. code-block::
 
    my_pk_field | name
    mypk        | Value 1
@@ -54,7 +54,7 @@ Parler translation models must have "language_code" and "master__codename" or
 
 world.countrytranslation.csv
 
-.. code-block:: none
+.. code-block::
 
    language_code | master__codename | name
    es            | USA              | Estados Unidos
