@@ -7,8 +7,8 @@
     "start": "webpack --watch",
     "build": "NODE_ENV=production webpack -p",
     "build-dev": "webpack",
-    "test": "jest --config jest/jest-config-test.json",
-    "tests": "eslint . && jest --config jest/jest-config-tests.json",
+    "test": "jest --config jest/config-test.json",
+    "review-tests": "eslint . && jest --config jest/config-review-tests.json",
     "eslint": "eslint .",
     "stylelint": "stylelint assets/sass/*.scss",
     "makemessages": "i18next -r --directoryFilter !.build,!node_modules,!assets,!jest -o i18next/ -l es"
