@@ -4,7 +4,8 @@
   "project_description": "",
   "author_name": "Author Name",
   "license": [
-    "", "MIT", "BSD", "ISC", "Apache Software License 2.0", "GNU GPL v3.0"
+    "", "MIT", "BSD", "ISC", "Apache Software License 2.0", "GNU GPL v3.0",
+    "Unlicense"
   ],
   "_copy_without_render": [
       "*.html"
