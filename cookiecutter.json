@@ -1,0 +1,12 @@
+{
+  "project_name": "Project Name",
+  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
+  "project_description": "",
+  "author_name": "Author Name",
+  "license": [
+    "", "MIT", "BSD", "ISC", "Apache Software License 2.0", "GNU GPL v3.0"
+  ],
+  "_copy_without_render": [
+      "*.html"
+  ]
+}

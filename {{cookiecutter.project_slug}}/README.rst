@@ -1,8 +1,8 @@
-*******
-Project
-*******
+{% for _ in cookiecutter.project_name %}*{% endfor %}
+{{ cookiecutter.project_name }}
+{% for _ in cookiecutter.project_name %}*{% endfor %}
 
-TODO
+{{ cookiecutter.project_description }}
 
 Getting Started
 ===============
@@ -89,4 +89,4 @@ or review tests
 Authors
 =======
 
-* **Daniel Ramos**
+* **{{ cookiecutter.author_name }}**
