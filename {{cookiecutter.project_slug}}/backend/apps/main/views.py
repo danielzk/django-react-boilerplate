@@ -1,6 +1,8 @@
 # pylint: disable=unused-argument
 from django.shortcuts import render
 
+from utils.decorators import superuser_login_required
+
 
 def bad_request(request, exception=None):
     return render(request, 'errors/bad_request.html', status=400)
@@ -16,3 +18,8 @@ def page_not_found(request, exception=None):
 
 def server_error(request):
     return render(request, 'errors/server_error.html', status=500)
+
+
+@superuser_login_required
+def simulated_error(request):
+    raise Exception('Simulated error')
