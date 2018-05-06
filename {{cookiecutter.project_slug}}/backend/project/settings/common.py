@@ -14,6 +14,8 @@ env = environ.Env(
     DEBUG=(bool, False),
     LOAD_EXTERNAL_FILES=(bool, True),
     REDIS_URL=(str, 'redis://localhost:6379/0'),
+    DEFAULT_FROM_EMAIL=(str, 'webmaster@localhost'),
+    SERVER_EMAIL=(str, 'root@localhost'),
 )
 environ.Env.read_env(project_root('.env'))
 sys.path.append(root('apps'))
@@ -215,6 +217,9 @@ HIJACK_ALLOW_GET_REQUESTS = True
 
 EMAIL_CONFIG = env.email_url('EMAIL_URL', default='smtp://user@:password@localhost:25')
 vars().update(EMAIL_CONFIG)
+
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
+SERVER_EMAIL = env('SERVER_EMAIL')
 
 
 # =============================================================================
